@@ -29,7 +29,7 @@ deploy:
     docker push registry.heroku.com/$HEROKUAPPNAME/web;
     heroku container:release web -a $HEROKUAPPNAME
   on:
-    all_branches: true
+    branch: main
 
 notifications:
  email:
