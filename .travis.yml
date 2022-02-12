@@ -7,7 +7,9 @@ servuces:
 
 before_install:
   - python --version
+  - wget -q0- https://toolbelt.heroku.com/install.sh | sh
   - echo "$DOCKERPASSWORD" | docker login -u "$DOCKERUSER" --password-stdin
+  - echo "$HEROKUPASSWORD" | docker login -u "$HEROKUUSER" --password-stdin registry.heroku.com
 
 install:
   - pip install -U pip
@@ -16,6 +18,8 @@ install:
 script: 
   - pytest # run tests
   - docker build -t bruno9817/ci_challenge .
+  - docker tag bruno9817/ci_challenge
+registry.heroku.com/$HEROKUAPPNAME/web
 
 after_success:
 
@@ -23,6 +27,7 @@ deploy:
   provider: script
   script:
     docker push bruno9817/ci_challenge;
+    docker push registry.heroku.com/$HEROKUAPPNAME/web;
   on:
     branch: main
 
