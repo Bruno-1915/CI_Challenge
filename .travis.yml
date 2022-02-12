@@ -7,7 +7,7 @@ servuces:
 
 before_install:
   - python --version
-  - echo "$DOCKERPASSWORD" | docker login -u "$DOCKERUSER" -- password-stdin
+  - echo "$DOCKERPASSWORD" | docker login -u "$DOCKERUSER" --password-stdin
 
 install:
   - pip install -U pip
