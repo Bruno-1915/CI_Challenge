@@ -15,7 +15,7 @@ install:
 
 script: 
   - pytest # run tests
-  - docker build -t prueba .
+  - docker build -t bruno9817/CI_CHALLENGE .
 
 after_success:
 
