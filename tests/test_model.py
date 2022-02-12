@@ -1,4 +1,4 @@
 import pytest
 
 def test_basic():
-    assert str(3) == '4'
+    assert str(4) == '4'
