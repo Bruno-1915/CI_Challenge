@@ -22,7 +22,7 @@ after_success:
 deploy:
   provider: script
   script:
-    docker push prueba;
+    docker push ci_challenge;
   on:
     branch: main
 
