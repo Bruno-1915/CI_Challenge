@@ -1,13 +1,31 @@
 language: python
 python:
   - 3.9
+
+servuces:
+  - docker
+
 before_install:
   - python --version
+  - echo "$DOCKERPASSWORD" | docker login -u "$DOCKERUSER" --password-stdin
+
+install:
   - pip install -U pip
   - pip install -U pytest
-install:
-script: pytest # run tests
+
+script: 
+  - pytest # run tests
+  - docker build -t prueba .
+
 after_success:
+
+deploy:
+  provider: script
+  script:
+    docker push prueba;
+  on:
+    branch: master
+
 notifications:
  email:
   on_success: always
