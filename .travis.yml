@@ -24,7 +24,7 @@ deploy:
   script:
     docker push prueba;
   on:
-    branch: master
+    branch: main
 
 notifications:
  email:
