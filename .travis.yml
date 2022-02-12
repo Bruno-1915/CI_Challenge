@@ -22,7 +22,7 @@ after_success:
 deploy:
   provider: script
   script:
-    docker push ci_challenge;
+    docker push bruno9817/ci_challenge;
   on:
     branch: main
 
