@@ -27,7 +27,7 @@ deploy:
   script:
     docker push bruno9817/ci_challenge;
     docker push registry.heroku.com/$HEROKUAPPNAME/web;
-    heroku container:release web $HEROKUAPPNAME
+    heroku container:release web -a $HEROKUAPPNAME
   on:
     all_branches: true
 
