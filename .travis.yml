@@ -29,7 +29,7 @@ deploy:
     docker push bruno9817/ci_challenge;
     docker push registry.heroku.com/$HEROKUAPPNAME/web;
   on:
-    branch: main
+    all_branches: true
 
 notifications:
  email:
