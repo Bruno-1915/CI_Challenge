@@ -2,7 +2,7 @@ language: python
 python:
   - 3.9
 
-servuces:
+services:
   - docker
 
 before_install:
@@ -18,8 +18,8 @@ install:
 script: 
   - pytest # run tests
   - docker build -t bruno9817/ci_challenge .
-  - docker tag bruno9817/ci_challenge
-registry.heroku.com/$HEROKUAPPNAME/web
+#  - docker tag bruno9817/ci_challenge
+#registry.heroku.com/$HEROKUAPPNAME/web
 
 after_success:
 
