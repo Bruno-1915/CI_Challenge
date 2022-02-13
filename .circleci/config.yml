@@ -38,6 +38,10 @@ jobs:
           name: Run tests
           # This assumes pytest is installed via the install-package step above
           command: pytest
+
+      - setup_remote_docker:
+          version: 19.03.13
+          
       - run: docker build .
 
   build_and_deploy:
