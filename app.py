@@ -91,7 +91,7 @@ def predict():
 
 if __name__ == '__main__':
     # app.run(port=5002, threaded=False)
-	print(int(os.environ.get('PORT', 33507)))
+    print(int(os.environ.get('PORT', 33507)))
     # Serve the app with gevent
     port = int(os.environ.get('PORT', 33507))
     http_server = WSGIServer(('0.0.0.0', port), app)
