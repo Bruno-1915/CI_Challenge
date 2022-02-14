@@ -10,13 +10,11 @@ from gevent.pywsgi import WSGIServer
 import tensorflow as tf
 from tensorflow import keras
 
-from tensorflow.keras.applications.imagenet_utils import preprocess_input, decode_predictions
 from tensorflow.keras.models import load_model
-from tensorflow.keras.preprocessing import image
 
 # Some utilites
 import numpy as np
-from util import base64_to_pil
+from util import *
 
 
 # Declare a flask app
@@ -28,7 +26,8 @@ app = Flask(__name__)
 # or https://www.tensorflow.org/api_docs/python/tf/keras/applications
 
 from tensorflow.keras.applications.mobilenet_v2 import MobileNetV2
-model = MobileNetV2(weights='imagenet')
+#model = MobileNetV2(weights='imagenet')
+model = load_model()
 
 print('Model loaded. Check http://127.0.0.1:5000/')
 
@@ -40,22 +39,6 @@ MODEL_PATH = 'models/your_model.h5'
 # model = load_model(MODEL_PATH)
 # model._make_predict_function()          # Necessary
 # print('Model loaded. Start serving...')
-
-
-def model_predict(img, model):
-    img = img.resize((224, 224))
-
-    # Preprocessing the image
-    x = image.img_to_array(img)
-    # x = np.true_divide(x, 255)
-    x = np.expand_dims(x, axis=0)
-
-    # Be careful how your trained model deals with the input
-    # otherwise, it won't make correct prediction!
-    x = preprocess_input(x, mode='tf')
-
-    preds = model.predict(x)
-    return preds
 
 
 @app.route('/', methods=['GET'])
@@ -78,11 +61,10 @@ def predict():
 
         # Process your result for human
         pred_proba = "{:.3f}".format(np.amax(preds))    # Max probability
-        pred_class = decode_predictions(preds, top=1)   # ImageNet Decode
+        result = decode_preds(preds)   # ImageNet Decode
 
-        result = str(pred_class[0][0][1])               # Convert to string
         result = result.replace('_', ' ').capitalize()
-        
+
         # Serialize the result, you can add additional fields
         return jsonify(result=result, probability=pred_proba)
 
