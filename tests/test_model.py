@@ -7,7 +7,7 @@ with warnings.catch_warnings():
     warnings.filterwarnings("ignore", category=DeprecationWarning)
     import imp
 
-from CI_Challenge.util import *
+from ..util import *
 
 def test_basic():
     assert str(4) == '4'
