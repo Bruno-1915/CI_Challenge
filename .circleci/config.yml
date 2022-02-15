@@ -82,8 +82,8 @@ workflows:
     #Add cron job
     triggers:
       - schedule:
-        cron: "15 * * * *"
-        filters:
-          branches:
-            only:
-              - main
+          cron: "15 * * * *"
+          filters:
+            branches:
+              only:
+                - main
