@@ -18,7 +18,7 @@ from tensorflow.keras.applications.imagenet_utils import decode_predictions
 path_model = './models/model_hm.h5'
 
 use = 'MobileNet'
-use = 'OwnModel'
+#use = 'OwnModel'
 
 def base64_to_pil(img_base64):
     """
